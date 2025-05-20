@@ -7,6 +7,46 @@
 <p id="demo"></p>
 
 <script>
+    // 設計一個分同步 function 會傳進去callback
+    // 非同步function要用async await, 不要用then
+    // 非同步function會fetch一個html檔案'mycar.html'
+    // 將這個html檔案的文字內容傳給callback
+
+    // 設計替換 htmL 檔案的文字內容的 function
+    // 這個 function 會接收一個參數 data
+    // 將這個參數  data  的內容放到 id 為 function data demo 的 htmL 元素裡面
+    // 呼叫這個非同步function 將這個替換 html檔案的文字內容的  function當作參數傳進去
+    function myDisplay(data) {
+        document.getElementById("demo").innerHTML = data;
+    }
+    async function myFunction(callback) {
+        // 使用 fetch 取得檔案
+        const response = await fetch('mycar.html');
+        // 轉換為文字格式
+        const data = await response.text();
+        // 將 demo 元素的 html 取代為文字內容
+        callback(data);
+    }
+    // 呼叫這個非同步function 將這個替換 html檔案的文字內容的  function當作參數傳進去
+    myFunction(myDisplay);
+
+
+
+
+
+
+    // function myDisplay(data) {
+    //     document.getElementById("demo").innerHTML = data;
+    // }
+    //
+    // async function getHTML(callback) {
+    //     let response = await fetch('mycar.html');
+    //     let data = await response.text();
+    //     callback(data);
+    // }
+    //
+    // getHTML(myDisplay);
+
 
 
 
